@@ -23,9 +23,10 @@ export default (ctx) => {
     }
 
     app.use(store);
+    app.use(ctx.ajaxPlugin);
     app.use(ctx.services);
     app.use(router);
-    app.use(ctx.tips);
+    app.use(ctx.tipsPlugin);
     app.use(Antd);
     app.mount(dom);
     ctx.app = app;

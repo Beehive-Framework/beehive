@@ -9,14 +9,21 @@ export default (ctx) => {
         icon: createVNode(ExclamationCircleOutlined),
     }
 
-    let confirmConf = Object.assign(defaultConfirmConf, ctx.opts.confirmConf)
-    ctx.tips = {
+    let confirmConf = Object.assign(defaultConfirmConf, ctx.opts.confirmConf);
+    let confirm = (opts) => {
+        return Modal.confirm(Object.assign(confirmConf, opts))
+    }
+
+    ctx.tips = {};
+    ctx.tips.message = message;
+    ctx.tips.notify = notification;
+    ctx.tips.confirm = confirm;
+
+    ctx.tipsPlugin = {
         install:  (app, options) => {
             app.config.globalProperties.$message = message
             app.config.globalProperties.$notify = notification
-            app.config.globalProperties.$confirm = (opts) => {
-                return Modal.confirm(Object.assign(confirmConf, opts))
-            }
+            app.config.globalProperties.$confirm = confirm
         }
     }
 }

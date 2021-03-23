@@ -1,8 +1,16 @@
 import BaseService from '../../libs/beehive/core/BaseService.js';
 
+/*
+ * 可以在该类中直接使用：
+ * this.store  //vuex store
+ * this.ajax   //封装并配置好的ajax方法
+ * this.tips.message.error('error message') //封装好的message提示,默认配置同ant-design-vue
+ * this.tips.notify(') //封装好的message提示, 默认配置同ant-design-vue
+ * this.tips.comfirm({}) //封装好的comfirm提示, 默认配置同ant-design-vue
+ */
 class Students extends BaseService {
     constructor() {
-        super()
+        super(...arguments)
     }
 
     /*

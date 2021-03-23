@@ -1,12 +1,18 @@
 class BaseService {
     constructor(name, ctx) {
         this.name = name;
-        this.beehive = ctx;
         this.state = {};
         this.getters = {};
         this.actions = {};
         this.mutations = {};
         this.init();
+        if (ctx) {
+            this.beehive = ctx;
+            this.ajax = ctx.ajax;
+            this.tips = ctx.tips;
+            Object.assign(this, ctx.inject)
+        }
+
     }
 
     init() {

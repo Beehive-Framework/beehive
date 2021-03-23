@@ -6,6 +6,7 @@ import registryRoutes from './core/common/registryRoutes.js';
 import registryModules from './core/common/registryModules.js';
 import initLogger from './core/common/initLogger.js';
 import initTips from './core/common/initTips.js';
+import initAjax from './core/common/initAjax.js';
 import initServices from './core/common/initServices.js';
 // import BaseLogic from './core/BaseLogic.js';
 
@@ -18,9 +19,10 @@ class Beehive {
 
     _init() {
         const ctx = this;
-        console.log(11)
+        ctx.inject = this.opts.inject || {}; //业务需要自行注入到service中的内容
         //initDefaultView(ctx)    //初始化默认展现：Loading, 路由404, 全局500, 全局异常
         initTips(ctx)           //初始化提示组件
+        initAjax(ctx)           //初始化提示组件
         // initDialog(ctx)         //初始化弹窗组件
         // initLogger(ctx)         //初始化日志
         initServices(ctx)          //初始化所有业务类
