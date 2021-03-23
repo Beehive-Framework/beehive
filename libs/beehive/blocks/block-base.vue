@@ -1,5 +1,5 @@
 <template>
-  <div class="block-wrapper" ref="wrapper" :style="">
+  <div class="block-wrapper" ref="wrapper">
     <component v-bind:is="currentView"></component>
   </div>
 </template>
