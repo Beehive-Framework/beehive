@@ -1,5 +1,7 @@
 ## 一句话简介
 基于vue3生态打造针对web工作台场景的新一代前端框架
+[项目wiki](https://wiki.zhiyinlou.com/pages/viewpage.action?pageId=126791847)
+
 
 ## 功能介绍
 
