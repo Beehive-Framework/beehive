@@ -14,12 +14,12 @@ export default (ctx) => {
         return Modal.confirm(Object.assign(confirmConf, opts))
     }
 
-    ctx.tips = {};
-    ctx.tips.message = message;
-    ctx.tips.notify = notification;
-    ctx.tips.confirm = confirm;
+    ctx.inject.tips = {};
+    ctx.inject.tips.message = message;
+    ctx.inject.tips.notify = notification;
+    ctx.inject.tips.confirm = confirm;
 
-    ctx.tipsPlugin = {
+    ctx.vuePlugin.tips = {
         install:  (app, options) => {
             app.config.globalProperties.$message = message
             app.config.globalProperties.$notify = notification

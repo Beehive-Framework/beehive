@@ -18,15 +18,22 @@ export default (ctx) => {
 
 
     //执行全局注册动作
-    for (let i in ctx.modules) {
-        app.component(i, ctx.modules[i].default || ctx.modules[i])
+    const globleComponents = Object.assign(ctx.modules, ctx.blocks)
+    for (let i in globleComponents) {
+        app.component(i, globleComponents[i].default || globleComponents[i])
+    }
+
+    // app.use(ctx.ajaxPlugin);
+    // app.use(ctx.loggerPlugin);
+    // app.use(ctx.tipsPlugin);
+
+    for (let i in ctx.vuePlugin) {
+        app.use(ctx.vuePlugin[i])
     }
 
     app.use(store);
-    app.use(ctx.ajaxPlugin);
     app.use(ctx.services);
     app.use(router);
-    app.use(ctx.tipsPlugin);
     app.use(Antd);
     app.mount(dom);
     ctx.app = app;

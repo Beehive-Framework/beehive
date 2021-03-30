@@ -38,5 +38,6 @@ const beehive = new Beehive({
     '500page': null, //传入一个vue组件
 })
 
+
 // 如果需要使用额外的vue插件，可以用以下方法添加
 // beehive.app.use()

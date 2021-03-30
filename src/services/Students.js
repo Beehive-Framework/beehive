@@ -32,7 +32,9 @@ class Students extends BaseService {
 
     changeName(name) {
         setTimeout(() => {
-            this.store.commit('Students/changeName', name)
+            // this.store.commit('Students/changeName', name)
+            this.setState('name', name)
+            this.tips.message.info('chenggong');
         }, 500);
     }
 }

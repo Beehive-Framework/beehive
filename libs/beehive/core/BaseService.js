@@ -4,12 +4,19 @@ class BaseService {
         this.state = {};
         this.getters = {};
         this.actions = {};
-        this.mutations = {};
+        this.mutations = {
+            defaultSetState: (state, obj) => {
+                for (let i in obj) {
+                    state[i] = obj[i]
+                }
+            }
+        };
         this.init();
         if (ctx) {
             this.beehive = ctx;
-            this.ajax = ctx.ajax;
-            this.tips = ctx.tips;
+            // this.ajax = ctx.ajax;
+            // this.tips = ctx.tips;
+            // this.logger = ctx.logger;
             Object.assign(this, ctx.inject)
         }
 
@@ -28,6 +35,20 @@ class BaseService {
             actions: this.actions,
             mutations: this.mutations
         }
+    }
+
+    getState(key) {
+        return this.store.state[this.name][key]
+    }
+
+    setState(key, value) {
+        const obj = {};
+        obj[key] = value
+        this.store.commit(this.name + '/defaultSetState', obj)
+    }
+
+    getComputed(key) {
+        return this.store.getters[this.name + '/' + key ]
     }
 }
 

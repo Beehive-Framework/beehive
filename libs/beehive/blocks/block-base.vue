@@ -1,17 +1,27 @@
 <template>
-  <div class="block-wrapper" ref="wrapper">
-    <component v-bind:is="currentView"></component>
-  </div>
+  <a-col :span="span" :order="order" class="block-wrapper">
+      <component v-bind:is="currentView"></component>
+      <slot></slot>
+  </a-col>
 </template>
 
 <script>
-const logger = () => {
-  //用于日志打点的函数
-}
+
 export default {
-  name: 'block-base',
-  props: ['module', 'moduleList','blockname', 'logType', 'style'],
-  inject: ['conf'],
+  props: {
+    'module': String,
+    'moduleList': Array,
+    'blockname': String,
+    'logType': {
+      validator: function(value) {
+        return ['mounted', 'showed'].indexOf(value) !== -1
+      }
+    },
+    'style': Object,
+    'span': Number,
+    'order': Number
+  },
+  // inject: ['conf'],
   data() {
     return {
       moduleName: ''
@@ -36,7 +46,7 @@ export default {
     }
 
 
-    if (this.logType === 'show') {
+    if (this.logType === 'showed') {
       this.showLogger()
     } else {
       this.mountLogger()
@@ -53,10 +63,22 @@ export default {
 
   methods: {
     mountComponent(moduleName) {
-      import('../modules/' + moduleName).then((component) => {
-          component.props = this.store[conf[i].dependenceModal]
-          component.$mount(this.$ref['wrapper'])
-      })
+      // import('../modules/' + moduleName).then((component) => {
+      //     component.props = this.store[conf[i].dependenceModal]
+      //     component.$mount(this.$ref['wrapper'])
+      // })
+    },
+
+    logger() {
+      if (this.$utils.is.function(this.$logger)) {
+        return this.$logger
+      }
+      else if (this.$logger.loadMsg) {
+        return (name) => {
+          // this.$logger.cacheUploader(event, 'b', )
+          this.$logger.loadMsg({moduleName: name});
+        }
+      }
     },
 
     //当这个区块出现在可视区内时，上报日志, 组件生命周期内只报一次
@@ -64,10 +86,10 @@ export default {
 
     },
 
-    //当这个组件mount时，上报日志
+    //当这个组件mount时，直接上报日志
     mountLogger() {
-      const name = this.blockname || this.module || this.moduleName
-      logger(name)
+      const name = this.blockname || this.module || this.moduleName;
+      this.logger(name);
     }
   }
 }
@@ -76,7 +98,7 @@ export default {
 <style>
 .block-wrapper {
     border: 1px dashed #333;
-    margin: 10px;
+    margin: 10px 0;
     padding: 5px;
 }
 </style>

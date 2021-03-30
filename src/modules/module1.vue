@@ -1,5 +1,5 @@
 <template>
-  <h1>module1</h1>
+  <h1>module11111111</h1>
   <h1>{{name}}</h1>
   <button @click="openModal">打开模态框</button>
   <button @click="openMessage">打开message</button>
@@ -28,7 +28,7 @@
             },
 
             openMessage() {
-                this.$message.info('hhhhhhhhhhhhh')
+                this.$message.info('hhhhh1111111111111hhhhhhhh')
             },
 
             openConfirm() {
@@ -45,14 +45,19 @@
             },
 
             callLogic() {
-                // console.log(this.$store);
+                console.log(this.$services.Students);
                 var random = Math.random() + '';
                 this.$services.Students.changeName(random)
+
+                // this.$services.Students.setState('name', random);
             }
         },
         computed: {
             name () {
-              return this.$store.getters['Students/showName']
+              // return this.$store.getters['Students/showName']
+              // return this.$store.state.Students.name;
+              return this.$services.Students.getComputed('showName')
+              // return this.$services.Students.getState('name')
               // return this.$store.getters['showName']
             }
         }
