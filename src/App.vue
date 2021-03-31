@@ -8,7 +8,7 @@
         v-model:selectedKeys="selectedKeys1"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">Beehiev Framework</a-menu-item>
+        <a-menu-item key="1">{{title}}</a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -32,7 +32,13 @@
 <script lang="ts">
 
 import { defineComponent, ref } from 'vue';
+import { APP_TITLE } from './constans';
 export default defineComponent({
+  data () {
+    return {
+      title: APP_TITLE
+    }
+  },
   setup() {
     return {
       selectedKeys1: ref<string[]>(['2']),
