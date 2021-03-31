@@ -32,13 +32,8 @@
 <script lang="ts">
 
 import { defineComponent, ref } from 'vue';
-import { APP_TITLE } from './constans';
+import { APP_ENV } from './constans';
 export default defineComponent({
-  data () {
-    return {
-      title: APP_TITLE
-    }
-  },
   setup() {
     return {
       selectedKeys1: ref<string[]>(['2']),
@@ -48,6 +43,11 @@ export default defineComponent({
   computed: {
     routers(){
         return this.$router.options.routes.filter((item) => !!item.name)
+    },
+    title () {
+      const suffix = APP_ENV !== 'production' ? ` [ ${APP_ENV} ]` : '';
+
+      return `Beehiev Framework${suffix}`;
     }
   }
 });
