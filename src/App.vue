@@ -8,7 +8,7 @@
         v-model:selectedKeys="selectedKeys1"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">Beehiev Framework</a-menu-item>
+        <a-menu-item key="1">{{title}}</a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -32,6 +32,7 @@
 <script lang="ts">
 
 import { defineComponent, ref } from 'vue';
+import { APP_ENV } from '/@/utils/constans';
 export default defineComponent({
   setup() {
     return {
@@ -42,6 +43,11 @@ export default defineComponent({
   computed: {
     routers(){
         return this.$router.options.routes.filter((item) => !!item.name)
+    },
+    title () {
+      const suffix = APP_ENV !== 'production' ? ` [ ${APP_ENV} ]` : '';
+
+      return `Beehiev Framework${suffix}`;
     }
   }
 });
