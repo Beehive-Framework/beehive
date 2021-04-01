@@ -32,7 +32,7 @@
 <script lang="ts">
 
 import { defineComponent, ref } from 'vue';
-import { APP_ENV } from './constans';
+import { APP_ENV } from './utils/constans';
 export default defineComponent({
   setup() {
     return {
