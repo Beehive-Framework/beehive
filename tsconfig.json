@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "/",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "paths": {
+      "/@/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue"
+, "src/main.js"  ],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}
