@@ -13,7 +13,12 @@ export default defineConfig(({ command, mode }) => {
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env);
 
-  const { VITE_PUBLIC_PATH, VITE_DROP_CONSOLE } = viteEnv;
+  const {
+    VITE_PUBLIC_PATH,
+    VITE_DROP_CONSOLE,
+    VITE_DROP_DEBUGGER,
+    VITE_KEEP_INFINITY
+  } = viteEnv;
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -23,7 +28,6 @@ export default defineConfig(({ command, mode }) => {
       alias: createAlias([
         ['/@/', 'src'],
         ['/@u/', 'src/utils']
-        // todo: ...
       ]),
     },
     build: {
@@ -31,9 +35,10 @@ export default defineConfig(({ command, mode }) => {
       outDir: 'dist',
       terserOptions: {
         compress: {
-          keep_infinity: true,
+          keep_infinity: VITE_KEEP_INFINITY,
           // Used to delete console in production environment
           drop_console: VITE_DROP_CONSOLE,
+          drop_debugger: VITE_DROP_DEBUGGER
         },
       },
       rollupOptions: {
