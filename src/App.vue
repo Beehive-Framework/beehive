@@ -21,7 +21,7 @@
       </a-layout-sider>
       <a-layout style="padding: 0 24px 24px">
         <a-layout-content
-          :style="{ background: '#fff', padding: '24px', marginTop: '24px', minHeight: '280px' }"
+          :style="{ background: '#fff', padding: '24px', marginTop: '24px', minHeight: '280px', overflow: 'auto'}"
         >
           <router-view></router-view>
         </a-layout-content>

@@ -1,9 +1,17 @@
 <template>
-  <h1>test</h1>
-
+  <h1>Home</h1>
+  <block module="module1"></block>
+  <block v-for="i in arr" :span="12">这里是区块{{i}}</block>
 </template>
 
-<script setup>
+<script>
+    export default {
+        data() {
+            return {
+                arr: [1,2,3,4]
+            }
+        }
+    }
 
 </script>
 

@@ -47,5 +47,21 @@ export default (options={}) => {
         },
         param: options.commonParams
     });
-    return xesLoggerInstance;
+
+    const logger = {
+        showMsg: (obj) => {
+            //展现日志上报
+            xesLoggerInstance.loadMsg(obj);
+        },
+        clickMsg: (obj) => {
+            //交互日志上报
+            xesLoggerInstance.clickMsg(obj);
+        },
+        sysMsg: (obj, type) => {
+            //系统日志上报
+            const sysType = type || obj.type || 'js'
+            xesLoggerInstance.cacheUploader(obj, 'c', sysType);
+        }
+    }
+    return logger;
 }
