@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 // import { beforeEach, afterEach } from '../../../../src/router.js';
 
 import Antd from 'ant-design-vue';
@@ -9,8 +9,8 @@ export default (ctx) => {
     const dom = ctx.opts.dom || '#app';
     const root = ctx.opts.root;
     const router = createRouter({
-      history: createWebHashHistory(),
-      routes: ctx.routes
+        history: createWebHashHistory(),
+        routes: ctx.routes
     });
 
 
@@ -35,6 +35,8 @@ export default (ctx) => {
     app.use(ctx.services);
     app.use(router);
     app.use(Antd);
+    app.use(ctx.form);
+
     app.mount(dom);
     ctx.app = app;
     ctx.routr = router;

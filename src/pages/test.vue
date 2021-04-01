@@ -1,7 +1,7 @@
 <template>
   <h1>Home</h1>
   <block module="module1"></block>
-  <block v-for="i in arr" :span="12">这里是区块{{i}}</block>
+  <block v-for="(item, index) in arr" :key="index" :span="12">这里是区块{{item}}</block>
 </template>
 
 <script>
