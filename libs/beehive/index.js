@@ -13,14 +13,14 @@ import initServices from './core/common/initServices.js';
 
 class Beehive {
 
-    constructor(options) {
+    constructor (options) {
         checkOptions(this, options);
         this.inject = {};
         this.vuePlugin = {};
         this.injectAttr = (k, v) => {
             this.inject[k] = v;
             this.vuePlugin[k] = {
-                install:  (app, options) => {
+                install: (app, options) => {
                     app.config.globalProperties['$' + k] = v
                 }
             }
