@@ -1,5 +1,5 @@
 <template>
-  <a-col :span="span" :order="order" class="block-wrapper">
+  <a-col :span="span" :order="order" class="block-wrapper" v-bind:style="style">
       <component v-bind:is="currentView"></component>
       <slot></slot>
   </a-col>
@@ -69,16 +69,8 @@ export default {
       // })
     },
 
-    logger() {
-      if (this.$utils.is.function(this.$logger)) {
-        return this.$logger
-      }
-      else if (this.$logger.loadMsg) {
-        return (name) => {
-          // this.$logger.cacheUploader(event, 'b', )
-          this.$logger.loadMsg({moduleName: name});
-        }
-      }
+    logger(name) {
+      this.$logger.showMsg({moduleName: name});
     },
 
     //当这个区块出现在可视区内时，上报日志, 组件生命周期内只报一次
@@ -100,5 +92,6 @@ export default {
     border: 1px dashed #333;
     margin: 10px 0;
     padding: 5px;
+    overflow: auto;
 }
 </style>
