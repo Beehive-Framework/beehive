@@ -18,7 +18,7 @@ const beehive = new Beehive({
         //路由配置
     },
     formConf: {
-        open: true,
+        open: true, // 默认为 false
         mode: 'antd' // 默认为 [antd], 可选项为 [element, antd]
     },
     xesLoggerConf: {
