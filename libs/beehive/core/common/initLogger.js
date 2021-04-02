@@ -22,6 +22,7 @@ export default (ctx) => {
         for (i in emptyLogger) {
             if (!is.function(loggerInstance[i])) {
                 loggerInstanceChecker = false;
+                throw `loggerInstance必须包含${i}方法`;
                 break;
             }
         }
