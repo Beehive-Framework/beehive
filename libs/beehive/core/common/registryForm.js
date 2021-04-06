@@ -19,7 +19,7 @@ export default (ctx) => {
 
   if (open) {
 
-    const formType = Object.keys(modeMap).indexOf(mode) !== -1 ? mode : 'ant';
+    const formType = Object.keys(modeMap).includes(mode) ? mode : 'ant';
 
     form = modeMap[formType];
   }
