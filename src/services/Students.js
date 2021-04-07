@@ -1,4 +1,4 @@
-import BaseService from '../../libs/beehive/core/BaseService.js';
+import BaseService from 'beehive/core/BaseService.js';
 
 /*
  * 可以在该类中直接使用：
