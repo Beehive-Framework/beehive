@@ -3,30 +3,50 @@
     <h1>框架内置组件111111</h1>
     <div class="form-container">
       <a-button @click="handleFormShow(true)">表单测试</a-button>
-      <a-modal :visible="formShow" title="Schema-Form Demo" @cancel="handleFormShow(false)">
-        <vue-form>
-
-        </vue-form>
+      <a-modal
+        :visible="modelProps.modelVisible"
+        title="Schema-Form Demo"
+        width="600"
+        @cancel="handleFormShow(false)">
+        <vue-form
+          v-model="formData"
+          :schema="schema"
+          :uiSchema="uiSchema"
+          :form-props="formProps"
+          :error-schema="errorSchema"
+        />
       </a-modal>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, reactive } from 'vue';
+import formDemo from '/@/components/Form/demo/demo.json';
+import { ModelFormProps, FormSchema } from '/@/components/Form/src/types/form';
+import { useSchemaForm } from '/@/components/Form/src/hooks/useForm';
 
 export default defineComponent({
   setup(props) {
-    const formShow = ref<boolean>(false);
+    const modelProps = reactive<ModelFormProps>({
+      modelVisible: false,
+    });
+
+    const { schema, uiSchema, formProps, errorSchema, formData } = useSchemaForm(formDemo as FormSchema);
 
     function handleFormShow(state: boolean) {
-      formShow.value = state;
-    }
+      modelProps.modelVisible = state;
+    };
 
     return {
-      formShow,
-      handleFormShow
-    }
+      handleFormShow,
+      modelProps,
+      schema,
+      uiSchema,
+      formProps,
+      errorSchema,
+      formData
+    };
   }
 })
 </script>

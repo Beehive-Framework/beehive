@@ -1,0 +1,78 @@
+{
+  "schema": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "string_input_demo": {
+        "title": "输入框",
+        "type": "string",
+        "description": "可以自定义描述",
+        "maxLength": 33,
+        "ui:options": {
+          "placeholder": "自定义placeholder",
+          "clearable": true,
+          "showWordLimit": true
+        }
+      },
+      "select_demo_block": {
+        "title": "我是一个Block",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "checkbox-demo": {
+            "title": "是否选择(Checkbox)",
+            "type": "boolean",
+            "ui:widget": "el-checkbox",
+            "ui:options": {
+              "label": "是否"
+            }
+          },
+          "number-demo": {
+            "title": "数字（slider）",
+            "type": "number",
+            "ui:widget": "ElSlider",
+            "multipleOf": 1
+          },
+          "color-picker-demo": {
+            "title": "颜色选择器",
+            "type": "string",
+            "format": "color"
+          }
+        },
+        "ui:order": [
+          "checkbox-demo",
+          "number-demo",
+          "color-picker-demo"
+        ]
+      },
+      "switch-demo": {
+        "title": "是否选择(Switch)",
+        "type": "boolean"
+      },
+      "upload-file": {
+        "title": "单文件",
+        "type": "string",
+        "ui:widget": "UploadWidget",
+        "ui:options": {
+          "action": "https://run.mocky.io/v3/518d7af7-204f-45ab-9628-a6e121dab8ca"
+        }
+      }
+    },
+    "ui:order": [
+      "string_input_demo",
+      "select_demo_block",
+      "switch-demo",
+      "upload-file"
+    ]
+  },
+  "uiSchema": {},
+  "formFooter": {
+    "show": false
+  },
+  "formProps": {
+    "inlineFooter": true,
+    "labelPosition": "right",
+    "labelWidth": "150px",
+    "labelSuffix": "："
+  }
+}
