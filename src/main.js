@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import Beehive from 'beehive/index.js';
+
 const beehive = new Beehive({
     dom: '#app',
     root: App,

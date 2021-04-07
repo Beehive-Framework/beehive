@@ -4,3 +4,5 @@ declare module "*.vue" {
 }
 
 declare module "is_js"
+
+declare module "beehive/*"

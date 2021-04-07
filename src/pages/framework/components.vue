@@ -21,9 +21,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import formDemo from '../../../libs/beehive/components/Form/demo/demo.json';
-import { ModelFormProps, FormSchema } from '../../../libs/beehive/components/Form/src/types/form';
-import { useSchemaForm } from '../../../libs/beehive/components/Form/src/hooks/useForm';
+import formDemo from 'beehive/components/Form/demo/demo.json';
+import { ModelFormProps, FormSchema } from 'beehive/components/Form/src/types/form';
+import { useSchemaForm } from 'beehive/components/Form/src/hooks/useForm.ts';
 
 export default defineComponent({
   setup(props) {
