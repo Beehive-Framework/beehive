@@ -27,7 +27,8 @@ export default defineConfig(({ command, mode }) => {
       // import as /@/xxx, it cannot start with @ because that's considered a package. link: https://github.com/vitejs/vite/issues/279
       alias: createAlias([
         ['/@/', 'src'],
-        ['/@u/', 'src/utils']
+        ['/@u/', 'src/utils'],
+        ['/#/', 'types'],
       ]),
     },
     build: {

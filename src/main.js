@@ -17,6 +17,10 @@ const beehive = new Beehive({
     routerConf: {
         //路由配置
     },
+    formConf: {
+        open: true, // 默认为 false
+        mode: 'antd' // 默认为 [antd], 可选项为 [element, antd]
+    },
     xesLoggerConf: {
         //xeslogger配置
     },
