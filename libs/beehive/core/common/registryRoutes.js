@@ -12,7 +12,7 @@ export default (ctx) => {
         })
     };
 
-    const originPages = import.meta.glob('../../../../src/pages/**');
+    const originPages = import.meta.glob('/src/pages/**');
     let routes = [{
         path: '/:pathMatch(.*)*',
         component: () => import ('../../components/default/404.vue')
