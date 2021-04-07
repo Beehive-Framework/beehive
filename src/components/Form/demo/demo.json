@@ -1,68 +1,118 @@
 {
   "schema": {
     "type": "object",
-    "required": [],
+    "required": [
+        "age"
+    ],
     "properties": {
-      "string_input_demo": {
-        "title": "输入框",
-        "type": "string",
-        "description": "可以自定义描述",
-        "maxLength": 33,
-        "ui:options": {
-          "placeholder": "自定义placeholder",
-          "clearable": true,
-          "showWordLimit": true
-        }
-      },
-      "select_demo_block": {
-        "title": "我是一个Block",
-        "type": "object",
-        "required": [],
-        "properties": {
-          "checkbox-demo": {
-            "title": "是否选择(Checkbox)",
-            "type": "boolean",
-            "ui:widget": "el-checkbox",
-            "ui:options": {
-              "label": "是否"
+        "age": {
+            "title": "测试基础类型 anyOf",
+            "anyOf": [
+                {
+                    "title": "测试基础类型 anyOf 5的倍数",
+                    "type": "integer",
+                    "multipleOf": 5
+                },
+                {
+                    "title": "测试基础类型 anyOf 3的倍数",
+                    "type": "integer",
+                    "multipleOf": 3
+                }
+            ],
+            "anyOfSelect": {
+                "ui:widget": "RadioWidget",
+                "ui:title": "选择选项",
+                "ui:options": {}
             }
-          },
-          "number-demo": {
-            "title": "数字（slider）",
-            "type": "number",
-            "ui:widget": "ElSlider",
-            "multipleOf": 1
-          },
-          "color-picker-demo": {
-            "title": "颜色选择器",
-            "type": "string",
-            "format": "color"
-          }
         },
-        "ui:order": [
-          "checkbox-demo",
-          "number-demo",
-          "color-picker-demo"
-        ]
-      },
-      "switch-demo": {
-        "title": "是否选择(Switch)",
-        "type": "boolean"
-      },
-      "upload-file": {
-        "title": "单文件",
-        "type": "string",
-        "ui:widget": "UploadWidget",
-        "ui:options": {
-          "action": "https://run.mocky.io/v3/518d7af7-204f-45ab-9628-a6e121dab8ca"
+        "test": {
+            "title": "测试 const anyOf",
+            "type": "string",
+            "anyOf": [
+                {
+                    "title": "schema option1",
+                    "const": "111"
+                },
+                {
+                    "ui:title": "ui-option2",
+                    "const": "222"
+                }
+            ]
+        },
+        "items": {
+            "title": "测试OneOf Array Items",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "anyOf": [
+                    {
+                        "properties": {
+                            "foo": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "properties": {
+                            "bar": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            }
         }
-      }
     },
-    "ui:order": [
-      "string_input_demo",
-      "select_demo_block",
-      "switch-demo",
-      "upload-file"
+    "anyOfSelect": {
+        "ui:widget": "RadioWidget",
+        "ui:title": "测试 anyOf object",
+        "ui:options": {
+            "style": {}
+        }
+    },
+    "anyOf": [
+        {
+            "ui:showTitle": true,
+            "title": "First method of identification",
+            "properties": {
+                "type": {
+                    "ui:hidden": true,
+                    "type": "string",
+                    "default": "userName",
+                    "const": "userName"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "First name",
+                    "default": "Chuck"
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Last name"
+                }
+            }
+        },
+        {
+            "ui:showTitle": true,
+            "title": "Second method of identification",
+            "properties": {
+                "type": {
+                    "ui:hidden": true,
+                    "type": "string",
+                    "default": "id",
+                    "const": "id"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "First name"
+                },
+                "idCode": {
+                    "type": "string",
+                    "title": "ID code",
+                    "default": "Default id"
+                }
+            }
+        }
     ]
   },
   "uiSchema": {},
