@@ -6,7 +6,6 @@
       <a-modal
         :visible="modelProps.modelVisible"
         title="Schema-Form Demo"
-        width="600"
         @cancel="handleFormShow(false)">
         <vue-form
           v-model="formData"
@@ -22,9 +21,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import formDemo from '/@/components/Form/demo/demo.json';
-import { ModelFormProps, FormSchema } from '/@/components/Form/src/types/form';
-import { useSchemaForm } from '/@/components/Form/src/hooks/useForm';
+import formDemo from '../../../libs/beehive/components/Form/demo/demo.json';
+import { ModelFormProps, FormSchema } from '../../../libs/beehive/components/Form/src/types/form';
+import { useSchemaForm } from '../../../libs/beehive/components/Form/src/hooks/useForm';
 
 export default defineComponent({
   setup(props) {
