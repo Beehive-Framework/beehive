@@ -8,8 +8,8 @@ export default (ctx) => {
     const entities = {};
 
     for(let i in originLogics) {
-        if (/.js$/.test(i)) {
-            const key = i.replace(/(\.|\/|\w)+services\//, '').replace(/.js$/, '');
+        if (/\.js$/.test(i)) {
+            const key = i.replace(/(\.|\/|\w)+services\//, '').replace(/\.js$/, '');
             entities[key] = new originLogics[i].default(key, ctx);
             if (entities[key].createState && entities[key].init) {
                 const vuexModuleConf = entities[key].createState(store)

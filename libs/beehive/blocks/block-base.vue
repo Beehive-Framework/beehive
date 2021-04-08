@@ -70,7 +70,7 @@ export default {
     },
 
     logger(name) {
-      this.$logger.showMsg({moduleName: name});
+      this?.$logger?.showMsg({moduleName: name});
     },
 
     //当这个区块出现在可视区内时，上报日志, 组件生命周期内只报一次

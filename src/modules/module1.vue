@@ -5,6 +5,7 @@
   <button @click="openMessage">打开message</button>
   <button @click="openConfirm">打开Confirm</button>
   <button @click="openNotify">打开Notify</button>
+  <button @click="openModal">打开Modal</button>
   <button @click="callLogic">调用业务逻辑</button>
 
 </template>
@@ -18,13 +19,14 @@
         // },
         methods: {
             openModal() {
-                // this.$modal('/modal/module1', {
-                //     title: '创建用户',
-                //     height: 400,
-                //     width: 800
-                // });
+                this.$modal({
+                    moduleName: 'module1',
+                    title: '创建用户',
+                    height: 400,
+                    width: 800
+                });
                 // this.$singleModal('/modal/module1');
-                console.log(this);
+                // console.log(this);
             },
 
             openMessage() {
