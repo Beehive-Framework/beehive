@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 // import { beforeEach, afterEach } from '../../../../src/router.js';
-import BasicForm from '../../components/Form/BasicForm.vue';
 import Antd from 'ant-design-vue';
 import store from './store';
 
@@ -36,7 +35,7 @@ export default (ctx) => {
     app.use(router);
     app.use(Antd);
     // app.component('schema-form', BasicForm);
-    app.use(BasicForm);
+    app.use(ctx.form);
 
     app.mount(dom);
     ctx.app = app;
