@@ -4,16 +4,17 @@
     <div class="form-container">
       <a-button @click="handleFormShow(true)">表单测试</a-button>
       <a-modal
-        :visible="modelProps.modelVisible"
+        :visible="modelProps.visible"
         title="Schema-Form Demo"
         @cancel="handleFormShow(false)">
-        <vue-form
+        <!-- <vue-form
           v-model="formData"
           :schema="schema"
           :uiSchema="uiSchema"
           :form-props="formProps"
           :error-schema="errorSchema"
-        />
+        /> -->
+        <schema-form ref="dynamicForm" :fields="fields" :form-schema="formSchema" />
       </a-modal>
     </div>
   </div>
@@ -21,30 +22,28 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import formDemo from 'beehive/components/Form/demo/demo.json';
-import { ModelFormProps, FormSchema } from 'beehive/components/Form/src/types/form';
-import { useSchemaForm } from 'beehive/components/Form/src/hooks/useForm.ts';
+import formDemo from 'beehive/components/Form/demo/schema1.ts';
+import { ModelFormProps } from 'beehive/components/Form/src/types/schema';
+// import { useSchemaForm } from 'beehive/components/Form/src/hooks/useForm.ts';
 
 export default defineComponent({
-  setup(props) {
+  setup(props: any) {
     const modelProps = reactive<ModelFormProps>({
-      modelVisible: false,
+      visible: false,
     });
 
-    const { schema, uiSchema, formProps, errorSchema, formData } = useSchemaForm(formDemo as FormSchema);
+    const fields = reactive({});
+    const formSchema = reactive(formDemo);
 
     function handleFormShow(state: boolean) {
-      modelProps.modelVisible = state;
+      modelProps.visible = state;
     };
 
     return {
       handleFormShow,
       modelProps,
-      schema,
-      uiSchema,
-      formProps,
-      errorSchema,
-      formData
+      fields,
+      formSchema
     };
   }
 })
