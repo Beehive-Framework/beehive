@@ -1,8 +1,8 @@
 export default {
   formItemLayout: {
     layout: 'horizontal',
-    // labelCol: {span: 4, offset: 12},
-    // wrapperCol: {span: 20, offset: 12},
+    labelCol: {span: 8},
+    wrapperCol: {span: 12},
   },
   style: {
 
@@ -12,8 +12,9 @@ export default {
     type: 'input',
     field: '111',
     props: {
-      placeholder: '...'
-    }
+      placeholder: '...',
+      required: true
+    },
   }, {
     label: 'checkbox field',
     type: 'checkbox',
