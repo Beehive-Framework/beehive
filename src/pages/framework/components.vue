@@ -7,13 +7,6 @@
         :visible="modelProps.visible"
         title="Schema-Form Demo"
         @cancel="handleFormShow(false)">
-        <!-- <vue-form
-          v-model="formData"
-          :schema="schema"
-          :uiSchema="uiSchema"
-          :form-props="formProps"
-          :error-schema="errorSchema"
-        /> -->
         <schema-form ref="dynamicForm" :fields="fields" :form-schema="formSchema" />
       </a-modal>
     </div>
@@ -24,7 +17,6 @@
 import { defineComponent, reactive } from 'vue';
 import formDemo from 'beehive/components/Form/demo/schema1.ts';
 import { ModelFormProps } from 'beehive/components/Form/src/types/schema';
-// import { useSchemaForm } from 'beehive/components/Form/src/hooks/useForm.ts';
 
 export default defineComponent({
   setup(props: any) {
