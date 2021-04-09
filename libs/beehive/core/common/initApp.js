@@ -35,8 +35,8 @@ export default (ctx) => {
     app.use(ctx.services);
     app.use(router);
     app.use(Antd);
-    app.component('schema-form', BasicForm);
-    // app.use(BasicForm);
+    // app.component('schema-form', BasicForm);
+    app.use(BasicForm);
 
     app.mount(dom);
     ctx.app = app;

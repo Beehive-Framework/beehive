@@ -16,7 +16,7 @@ export default {
       ]
     },
     {
-        type: "input",
+        type: "switch",
         label: "密码",
         field: "password",
         hidden: false, // 是否隐藏

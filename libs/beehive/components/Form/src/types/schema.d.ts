@@ -14,7 +14,7 @@ type Rule = ValidationRule | {
 }
 
 interface FormItem extends Partial<typeof FormItemProps>{
-    type?: 'input' | 'textarea' | 'select' | 'radio' | 'checkbox' | 'input-number' | 'inputRange' | 'switch' | VNode;
+    type?: VNode | string;
     label?: string; // 表单标签
     field: string; // 表单字段
     value: any; // 表单默认值

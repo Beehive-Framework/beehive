@@ -27,7 +27,6 @@ export default defineComponent({
     value: undefined as any // 表单项值
   },
   setup(props, {attrs, emit}) {
-    debugger
     const modelValue = computed({
       get: () => props.value,
       set: (val) => emit('update:value', val)

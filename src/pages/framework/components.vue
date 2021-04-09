@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import formDemo from 'beehive/components/Form/demo/schema1.ts';
+import formDemo from 'beehive/components/Form/demo/schema.ts';
 import { ModelFormProps } from 'beehive/components/Form/src/types/schema';
 
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
       visible: false,
     });
 
-    const fields = reactive({});
+    const fields = reactive([]);
     const formSchema = reactive(formDemo);
 
     function handleFormShow(state: boolean) {
