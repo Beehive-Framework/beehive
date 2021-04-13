@@ -27,7 +27,51 @@
     3. ajax实例依赖注入vue组件
     4. logger实例依赖注入vue组件
 
-- 弹层代码范式（待实现）
+- 弹层代码范式
+
+   弹层调起代码：
+    ```js
+        this.$modal({
+            moduleName: 'modal-modalTest',
+            title: '创建用户',
+            params: {stuid: 1111},
+            width: 800,
+            onOk: () => {
+              //顺序是先执行内部组件的submit方法，再执行onOk方法
+              console.log('999999999999999')
+            }
+        });
+
+    ````
+
+    弹层内容代码：需位于modules目录内
+
+    ````html
+    //modal-modalTest 代码
+    <template>
+      <h1>modal test</h1>
+    </template>
+    <script>
+        export default {
+            props: {
+                'params': Object
+            },
+            methods: {
+                submit() {
+                  return new Promise((resolve, reject) => {
+                    setTimeout(()=> {
+                      resolve('submit111111111')
+                    }, 1000)
+                  })
+                },
+
+                cancel() {
+                  console.log('cancel11111111')
+                }
+            }
+        }
+    </script>
+    ````
 
 - blockWrapper（待实现）
 

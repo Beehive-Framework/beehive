@@ -11,10 +11,10 @@
         },
         methods: {
             submit() {
-              return new Promise((r1, r2) => {
+              return new Promise((resolve, reject) => {
                 setTimeout(()=> {
-                    console.log( this.params, '000000000000000000000')
-                  r1('submit111111111')
+                  console.log( this.params, '000000000000000000000')
+                  resolve('submit111111111')
                 }, 1000)
               })
             },
