@@ -1,46 +1,75 @@
 import { Modal } from 'ant-design-vue';
-import Antd from 'ant-design-vue';
-import { defineComponent,createApp } from 'vue';
+import { createApp } from 'vue';
 import Block from '../../blocks/block-base.vue';
+import { globleRegistry } from './initApp.js';
 
 export default (ctx) => {
-    let defaultModalConf = {};
+    let defaultModalConf = {
+        confirmLoading: true,
+        okText: '确认',
+        cancelText: '取消'
+    };
     let modalConf = Object.assign(defaultModalConf, ctx.opts.modalConf);
     let modal = (opts, data) => {
-        // if (!opts.moduleName || !opts.content) {
-        //     throw '必须指定modal内容，内容为组件或已全局注册的模块'
-        // }
-        console.log(Modal.confirm(Object.assign(modalConf, opts)), 8888888888888888)
+
+        const defaultCallback = {
+            onOk: () => {},
+            onCancel: () => {}
+        };
+
+        const _onCancel = opts.onCancel;
+        const _onOk = opts.onOk;
+
+        opts.onCancel = () => defaultCallback.onCancel();
+        opts.onOk = () => defaultCallback.onOk();
+
+        Modal.confirm(Object.assign(modalConf, opts))
+
         if (opts.moduleName) {
-            let modalContentComp = defineComponent({
-                extends: Block,
-                data() {
-                    return {
-                        module: opts.moduleName
+
+            let app = createApp(Block, {module: opts.moduleName, params: opts.params});
+
+            globleRegistry(ctx, app);
+
+            let flag = 0;
+            let contentInstance;
+            const timer = setInterval(() => {
+                flag++;
+                let modalContainer = document.getElementsByClassName('.ant-modal-confirm-content');
+                if (modalContainer) {
+                    contentInstance = app.mount('.ant-modal-confirm-content')
+
+                    defaultCallback.onOk = () => {
+                        const submitResult = contentInstance.submit()
+                        if (_onOk) {
+                            if (submitResult instanceof Promise) {
+                                return submitResult.then(_onOk)
+                            }
+                            else {
+                                return _onOk(submitResult)
+                            }
+                        }
+                        return submitResult
                     }
+
+                    defaultCallback.onCancel = () => {
+                        const cancelResult = contentInstance.cancel()
+                        if (_onCancel) {
+                            if (cancelResult instanceof Promise) {
+                                return cancelResult.then(_onCancel)
+                            }
+                            else {
+                                return _onCancel(cancelResult)
+                            }
+                        }
+                        return cancelResult
+                    }
+                    clearInterval(timer);
                 }
-            })
-
-            const modalContentWrapper = document.getElementById('modalContentWrapper')
-            if (!modalContentWrapper) {
-                const wrapperDom = document.createElement('div');
-                wrapperDom.setAttribute('id', 'modalContentWrapper');
-                wrapperDom.style.display = 'hidden';
-                document.body.appendChild(wrapperDom);
-            }
-            let app = createApp(modalContentComp);
-            app.use(Antd)
-            const globleComponents = Object.assign(ctx.modules, ctx.blocks)
-            for (let i in globleComponents) {
-                app.component(i, globleComponents[i].default || globleComponents[i])
-            }
-            setTimeout(() => {
-                let modalContent = app.mount('.ant-modal-confirm-content')
-            }, 50)
-
-            // console.log(modalContent.$.vnode, '*********************')
-            // opts.content = modalContent.$.vnode
-            // console.log('66666666666666666666666666')
+                if (flag > 20) {
+                    clearInterval(timer);
+                }
+            }, 10)
         }
 
 

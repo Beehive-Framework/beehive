@@ -20,10 +20,14 @@
         methods: {
             openModal() {
                 this.$modal({
-                    moduleName: 'module1',
+                    moduleName: 'modal-modalTest',
                     title: '创建用户',
-                    height: 400,
-                    width: 800
+                    params: {stuid: 1111},
+                    width: 800,
+                    onOk: () => {
+                      //顺序是先执行内部组件的submit方法，再执行onOk方法
+                      console.log('999999999999999')
+                    }
                 });
                 // this.$singleModal('/modal/module1');
                 // console.log(this);
@@ -52,7 +56,21 @@
                 this.$services.Students.changeName(random)
 
                 // this.$services.Students.setState('name', random);
+            },
+
+            submit() {
+              return new Promise((r1, r2) => {
+                setTimeout(()=> {
+                  r1('submit111111111')
+                }, 1000)
+              })
+            },
+
+            cancel() {
+              console.log('cancel11111111')
             }
+
+
         },
         computed: {
             name () {

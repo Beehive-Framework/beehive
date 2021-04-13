@@ -1,7 +1,7 @@
 import 'ant-design-vue/dist/antd.css';
 
 import checkOptions from './core/common/checkOptions.js';
-import initApp from './core/common/initApp.js';
+import {initApp} from './core/common/initApp.js';
 import registryRoutes from './core/common/registryRoutes.js';
 import registryModules from './core/common/registryModules.js';
 import registryBlocks from './core/common/registryBlocks.js';

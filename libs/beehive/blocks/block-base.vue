@@ -1,6 +1,6 @@
 <template>
   <a-col :span="span" :order="order" class="block-wrapper" v-bind:style="style">
-      <component v-bind:is="currentView"></component>
+      <component v-bind:is="currentView" ref="child" :params="params"></component>
       <slot></slot>
   </a-col>
 </template>
@@ -19,7 +19,8 @@ export default {
     },
     'style': Object,
     'span': Number,
-    'order': Number
+    'order': Number,
+    'params': Object
   },
   // inject: ['conf'],
   data() {
@@ -28,6 +29,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this, 'block, this')
     //动态加载chunk,并mount到当前wrapper之中
     if (this.moduleList && this.blockname) {
       for(let i in this.conf) {
@@ -82,6 +84,20 @@ export default {
     mountLogger() {
       const name = this.blockname || this.module || this.moduleName;
       this.logger(name);
+    },
+
+    //如果子组件有submit方法，执行子组件的submit方法
+    submit() {
+      if (this?.$refs?.child?.submit) {
+        return this?.$refs?.child?.submit()
+      }
+    },
+
+    //如果子组件有cancel方法，执行子组件的cancel方法
+    cancel() {
+      if (this?.$refs?.child?.cancel) {
+        return this?.$refs?.child?.cancel()
+      }
     }
   }
 }
