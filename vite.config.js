@@ -1,9 +1,13 @@
 import { defineConfig, loadEnv } from 'vite';
 import { wrapperEnv } from './build/utils';
-import { createAlias } from './build/vite/alias';
 import { createRollupPlugins } from './build/rollup/plugin';
 import { createVitePlugins } from './build/vite/plugin';
 import visualizer from 'rollup-plugin-visualizer';
+import { resolve } from 'path';
+
+function pathResolve(dir) {
+  return resolve(process.cwd(), '.', dir);
+}
 
 export default defineConfig(({ command, mode }) => {
 
@@ -25,11 +29,10 @@ export default defineConfig(({ command, mode }) => {
     root,
     resolve: {
       // import as /@/xxx, it cannot start with @ because that's considered a package. link: https://github.com/vitejs/vite/issues/279
-      alias: createAlias([
-        ['/@/', 'src'],
-        ['/@u/', 'src/utils'],
-        ['/#/', 'types'],
-      ]),
+      alias: [{
+        find: /\/@\//,
+        replacement: pathResolve('src') + '/',
+      }],
     },
     build: {
       target: 'es2015',
