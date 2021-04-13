@@ -1,4 +1,4 @@
-import blockBase from '../../libs/beehive/blocks/block-base.vue';
+import blockBase from 'beehive/blocks/block-base.vue';
 
 const block = {
   extends: blockBase
