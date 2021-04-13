@@ -3,20 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Antd from 'ant-design-vue';
 import store from './store';
 
-export default (ctx) => {
-    const createApp = ctx.opts.createApp;
-    const dom = ctx.opts.dom || '#app';
-    const root = ctx.opts.root;
-    const router = createRouter({
-        history: createWebHashHistory(),
-        routes: ctx.routes
-    });
-
-
-    const app = createApp(root);
-
-
-    //执行全局注册动作
+const globleRegistry = (ctx, app) => {
     const globleComponents = Object.assign(ctx.modules, ctx.blocks)
     for (let i in globleComponents) {
         app.component(i, globleComponents[i].default || globleComponents[i])
@@ -32,14 +19,34 @@ export default (ctx) => {
 
     app.use(store);
     app.use(ctx.services);
-    app.use(router);
+    app.use(ctx.router);
     app.use(Antd);
     // app.component('schema-form', BasicForm);
     app.use(ctx.form);
+}
 
-    app.mount(dom);
+
+const initApp = (ctx) => {
+    const createApp = ctx.opts.createApp;
+    const dom = ctx.opts.dom || '#app';
+    const root = ctx.opts.root;
+    const router = createRouter({
+        history: createWebHashHistory(),
+        routes: ctx.routes
+    });
+
+
+    const app = createApp(root);
+
+
+    //执行全局注册动作
     ctx.app = app;
-    ctx.routr = router;
+    ctx.router = router;
+    globleRegistry(ctx, app);
+    app.mount(dom);
+
     // router.beforeEach(beforeEach);
     // router.afterEach(afterEach);
 }
+
+export {initApp, globleRegistry}

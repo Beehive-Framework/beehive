@@ -3,13 +3,18 @@
  */
 const extRouter = [{
     path: '/',
-    component: () => import('./pages/home.vue')
+    component: () => import('./pages/test.vue')
 }];
 
 /*
  * 给自动化路由增添相应功能
  */
 const attachInfo = {
+    '/test': {
+        title: '测试',
+        name: '测试',
+        // beforeEnter: (to, from, next) => {},
+    },
     '/home': {
         title: '首页',
         name: '首页',

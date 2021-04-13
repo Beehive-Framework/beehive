@@ -5,6 +5,7 @@
   <button @click="openMessage">打开message</button>
   <button @click="openConfirm">打开Confirm</button>
   <button @click="openNotify">打开Notify</button>
+  <button @click="openModal">打开Modal</button>
   <button @click="callLogic">调用业务逻辑</button>
 
 </template>
@@ -18,13 +19,18 @@
         // },
         methods: {
             openModal() {
-                // this.$modal('/modal/module1', {
-                //     title: '创建用户',
-                //     height: 400,
-                //     width: 800
-                // });
+                this.$modal({
+                    moduleName: 'modal-modalTest',
+                    title: '创建用户',
+                    params: {stuid: 1111},
+                    width: 800,
+                    onOk: () => {
+                      //顺序是先执行内部组件的submit方法，再执行onOk方法
+                      console.log('999999999999999')
+                    }
+                });
                 // this.$singleModal('/modal/module1');
-                console.log(this);
+                // console.log(this);
             },
 
             openMessage() {
@@ -50,7 +56,21 @@
                 this.$services.Students.changeName(random)
 
                 // this.$services.Students.setState('name', random);
+            },
+
+            submit() {
+              return new Promise((r1, r2) => {
+                setTimeout(()=> {
+                  r1('submit111111111')
+                }, 1000)
+              })
+            },
+
+            cancel() {
+              console.log('cancel11111111')
             }
+
+
         },
         computed: {
             name () {
