@@ -3,30 +3,40 @@
     <h1>框架内置组件111111</h1>
     <div class="form-container">
       <a-button @click="handleFormShow(true)">表单测试</a-button>
-      <a-modal :visible="formShow" title="Schema-Form Demo" @cancel="handleFormShow(false)">
-        <vue-form>
-
-        </vue-form>
+      <a-modal
+        :visible="modelProps.visible"
+        title="Schema-Form Demo"
+        @cancel="handleFormShow(false)">
+        <schema-form ref="dynamicForm" :fields="fields" :form-schema="formSchema" />
       </a-modal>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, reactive } from 'vue';
+import formDemo from 'beehive/components/Form/demo/schema.ts';
+import { ModelFormProps } from 'beehive/components/Form/src/types/schema';
 
 export default defineComponent({
-  setup(props) {
-    const formShow = ref<boolean>(false);
+  setup(props: any) {
+    const modelProps = reactive<ModelFormProps>({
+      visible: false,
+    });
+
+    const fields = reactive([]);
+    const formSchema = reactive(formDemo);
 
     function handleFormShow(state: boolean) {
-      formShow.value = state;
-    }
+      modelProps.visible = state;
+    };
 
     return {
-      formShow,
-      handleFormShow
-    }
+      handleFormShow,
+      modelProps,
+      fields,
+      formSchema
+    };
   }
 })
 </script>

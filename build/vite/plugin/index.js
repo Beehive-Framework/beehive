@@ -5,7 +5,8 @@ export function createVitePlugins (viteEnv, mode) {
   const vitePlugins = [
     vue(),
     resolve({
-      moduleDirectories: ['node_modules', 'libs']
+      moduleDirectories: ['node_modules', 'libs'],
+      extensions: [ '.mjs', '.js', '.jsx', '.json', '.vue' ],
     })
   ];
 

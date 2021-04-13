@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 // import { beforeEach, afterEach } from '../../../../src/router.js';
-
 import Antd from 'ant-design-vue';
 import store from './store';
 
@@ -22,6 +21,7 @@ const globleRegistry = (ctx, app) => {
     app.use(ctx.services);
     app.use(ctx.router);
     app.use(Antd);
+    // app.component('schema-form', BasicForm);
     app.use(ctx.form);
 }
 

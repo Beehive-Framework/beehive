@@ -1,4 +1,4 @@
-import VueAntdForm from '@lljj/vue3-form-ant';
+import VueAntdForm from '../../components/Form/BasicForm.vue';
 import VueElementForm from '@lljj/vue3-form-element';
 
 const modeMap = {
@@ -13,6 +13,8 @@ export default (ctx) => {
     setup: () => { }
   }
 
+  const formName = 'schema-form';
+
   const formConf = ctx.opts.formConf || {};
 
   const {open, mode = 'ant'} = formConf;
@@ -22,7 +24,13 @@ export default (ctx) => {
     const formType = Object.keys(modeMap).includes(mode) ? mode : 'ant';
 
     form = modeMap[formType];
+
+    if (!form.install) {
+      form.install = (vueApp) => {
+        vueApp.component(formName, form);
+      }
+    }
   }
 
-  ctx.form = Object.assign(form, { name: 'vue-form' });
+  ctx.form = Object.assign(form, { name: formName });
 }
