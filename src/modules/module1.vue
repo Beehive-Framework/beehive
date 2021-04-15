@@ -1,6 +1,7 @@
 <template>
   <h1>module11111111</h1>
   <h1>{{name}}</h1>
+  <h1>{{teacherName}}</h1>
   <button @click="openModal">打开模态框</button>
   <button @click="openMessage">打开message</button>
   <button @click="openConfirm">打开Confirm</button>
@@ -79,6 +80,10 @@
               return this.$services.Students.getComputed('showName')
               // return this.$services.Students.getState('name')
               // return this.$store.getters['showName']
+            },
+
+            teacherName() {
+              return this.$services.Teacher.getState('teacherName')
             }
         }
     }

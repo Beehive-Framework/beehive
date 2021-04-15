@@ -14,6 +14,7 @@ class BaseService {
         this.init();
         if (ctx) {
             this.beehive = ctx;
+            this.services = ctx.services;
             // this.ajax = ctx.ajax;
             // this.tips = ctx.tips;
             // this.logger = ctx.logger;

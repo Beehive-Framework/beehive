@@ -1,3 +1,4 @@
+
 import BaseService from 'beehive/core/BaseService.js';
 
 /*
@@ -8,7 +9,7 @@ import BaseService from 'beehive/core/BaseService.js';
  * this.tips.notify(') //封装好的message提示, 默认配置同ant-design-vue
  * this.tips.comfirm({}) //封装好的comfirm提示, 默认配置同ant-design-vue
  */
-class Students extends BaseService {
+class Teacher extends BaseService {
     constructor() {
         super(...arguments)
     }
@@ -18,25 +19,16 @@ class Students extends BaseService {
      */
     init() {
         this.state = {
-            name: 'Tom',
-            nickName: 'Jerry'
-        }
-        this.mutations.changeName = (state, name) => {
-            state.name = name
-        }
-
-        this.getters.showName = (state, getters) => {
-            return '【' + (state.name || state.nickname) + '】';
+            teacherName: 'Tom`s teacherName',
         }
     }
 
-    changeName(name) {
+    getTeacherNameByStuName(stuName) {
         setTimeout(() => {
             // this.store.commit('Students/changeName', name)
-            this.setState('name', name)
-            this.services.Teacher.getTeacherNameByStuName(name); //可以调用其他service的方法
+            this.setState('teacherName', stuName + '`s teacherName')
         }, 500);
     }
 }
 
-export default Students
+export default Teacher

@@ -6,7 +6,7 @@ export default (ctx) => {
     //vite-plugin-import-context  vite中也可以使用该插件
     const originLogics = import.meta.globEager('/src/services/**');
     const entities = {};
-
+    ctx.services = entities;
     for(let i in originLogics) {
         if (/\.js$/.test(i)) {
             const key = i.replace(/(\.|\/|\w)+services\//, '').replace(/\.js$/, '');
@@ -17,9 +17,6 @@ export default (ctx) => {
             }
         }
     }
-    // ctx.entities = entities
-
-
 
     ctx.services = {
         install:  (app, options) => {
