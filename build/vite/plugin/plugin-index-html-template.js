@@ -23,7 +23,7 @@ import { template } from 'lodash'
 export const indexHtmlTemplate = config => {
   const { data = {}, addData = () => {}, options = {} } = config || {}
   return {
-    name: 'html-transform',
+    name: 'index-html-template',
     transformIndexHtml(html, ctx) {
       const compiled = template(html, options)
       return compiled({ indexHtmlTemplateData: Object.assign(
