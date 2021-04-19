@@ -5,10 +5,50 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beehive</title>
+    {{ indexHtmlTemplateData.cssBundles?.map(b => `<link ref="preload" as="style" crossorigin href="${b}"></link>`)?.join('') }}
+    <script>{{ indexHtmlTemplateData.inlineCode }}</script>
   </head>
   <body>
     <div id="app">
-      <div>Loading........</div>
+      <div id="loading">
+        <span></span>
+        <span style="animation-delay: 0.13s"></span>
+        <span style="animation-delay: 0.26s"></span>
+        <span style="animation-delay: 0.39s"></span>
+        <span style="animation-delay: 0.52s"></span>
+      </div>
+      <style>
+        #loading {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+        #loading > span {
+          display: inline-block;
+          width: 8px;
+          height: 100%;
+          margin-right: 5px;
+          border-radius: 4px;
+          -webkit-animation: load 1.04s ease infinite;
+          animation: load 1.04s ease infinite;
+        }
+        @keyframes load {
+          0%,
+          100% {
+            height: 40px;
+            background: #98beff;
+          }
+          50% {
+            height: 60px;
+            margin-top: -20px;
+            background: #3e7fee;
+          }
+        }
+      </style>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
