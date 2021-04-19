@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue';
 import resolve from '@rollup/plugin-node-resolve'
 import indexHtmlTemplate from './plugin-index-html-template';
+import { indexJSReplace } from './plugin-index-js-replace';
 
 export function createVitePlugins (viteEnv, mode) {
   const vitePlugins = [
@@ -20,6 +21,7 @@ export function createVitePlugins (viteEnv, mode) {
         interpolate: /{{([\s\S]+?)}}/g,
       }
     }),
+    indexJSReplace(),
   ];
 
   return vitePlugins;
