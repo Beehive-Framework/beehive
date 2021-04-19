@@ -5,6 +5,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beehive</title>
+    {{ indexHtmlTemplateData.cssBundles?.map(b => `<link ref="preload" as="style" crossorigin href="${b}"></link>`)?.join('') }}
   </head>
   <body>
     <div id="app">
